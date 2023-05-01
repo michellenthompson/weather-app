@@ -14,8 +14,11 @@ function formatDate() {
 
   let weekDay = weekDays[now.getDay()];
   let hour = now.getHours();
-  let minute = now.getMinutes();
 
+  let minute = now.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
   let h4 = document.querySelector("h4");
   h4.innerHTML = `${weekDay} ${hour}:${minute}`;
 }
