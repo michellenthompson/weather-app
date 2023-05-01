@@ -22,47 +22,44 @@ function formatDate() {
 
 formatDate();
 
-//Challenge 2 - Search and city name update
+//Search and Current Weather with API
+
+let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
 
 let searchCity = document.querySelector("#city-search");
 searchCity.addEventListener("click", cityUpdate);
 
 function cityUpdate(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city-input");
-  let cityResult = document.querySelector("#city");
-  cityResult.innerHTML = `${city.value}`;
+  let cityInput = document.querySelector("#city-input");
+  let cityName = cityInput.value;
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric`;
+
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
 }
 
-//Challenge 3 - Update temperature between C and F
+function showTemperature(response) {
+  console.log(response);
 
-let temperature = document.getElementById("temperature");
-let celsiusLink = document.getElementById("celsius-link");
-let fahrenheitLink = document.getElementById("fahrenheit-link");
+  let city = document.querySelector("#city");
+  city.innerHTML = response.data.name;
 
-let temp = 25;
-let unit = "C";
-temperature.textContent = `${temp}°C`;
-
-celsiusLink.addEventListener("click", convertToCelsius);
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  if (unit === "F") {
-    // Convert Fahrenheit to Celsius
-    temp = ((temp - 32) * 5) / 9;
-    unit = "C";
-    temperature.textContent = `${Math.round(temp)}°C`;
-  }
+  let temperature = Math.round(response.data.main.temp);
+  let cityTemp = document.querySelector("#temperature");
+  cityTemp.innerHTML = temperature;
 }
+//currentCity works on Visual Studio Code, but not on codesandbox for some reason...
+let currentCity = document.querySelector("#current-city");
+currentCity.addEventListener("click", () => {
+  navigator.geolocation.getCurrentPosition((position) => {
+    const coordinates = position.coords;
+    let apiGeo = `http://api.openweathermap.org/geo/1.0/reverse?lat=${coordinates.latitude}&lon=${coordinates.longitude}&limit=1`;
 
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  if (unit === "C") {
-    // Convert Celsius to Fahrenheit
-    temp = (temp * 9) / 5 + 32;
-    unit = "F";
-    temperature.textContent = `${Math.round(temp)}°F`;
-  }
-}
+    axios.get(`${apiGeo}&appid=${apiKey}`).then((response) => {
+      let cityName = response.data[0].name;
+      let apiWeather = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric`;
+
+      axios.get(`${apiWeather}&appid=${apiKey}`).then(showTemperature);
+    });
+  });
+});
