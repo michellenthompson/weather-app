@@ -44,3 +44,8 @@ img#weather-image {
 a:link {
   text-decoration: none;
 }
+
+#author {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+}
