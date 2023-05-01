@@ -1,0 +1,46 @@
+body {
+  background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  width: 100%;
+  height: 1000px;
+}
+
+.container {
+  display: block;
+  max-width: 50%;
+  margin: 50px auto;
+  padding: 50px;
+  border-radius: 50px;
+  border: none;
+  background: white;
+  filter: drop-shadow(5px 5px 4px grey);
+}
+
+form {
+  padding-bottom: 15px;
+}
+
+.todaytemp {
+  font-size: 55px;
+  padding-top: 50px;
+}
+
+.weekstemp {
+  margin-top: 15px;
+}
+
+.weather {
+  font-size: 30px;
+}
+img#weather-image {
+  width: 50px;
+  filter: drop-shadow(2px 0px 0.1rem grey);
+}
+
+.units {
+  font-size: 12px;
+  vertical-align: text-top;
+}
+
+a:link {
+  text-decoration: none;
+}
