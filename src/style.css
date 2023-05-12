@@ -49,3 +49,15 @@ a:link {
   text-align: center;
   color: rgba(0, 0, 0, 0.5);
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  color: rgb(135, 135, 135);
+  margin: 0;
+  padding: 0;
+}
