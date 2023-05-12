@@ -1,4 +1,4 @@
-//Challenge 1 - Date and time
+//Date and time
 let now = new Date();
 
 function formatDate() {
@@ -26,12 +26,12 @@ function formatDate() {
 formatDate();
 
 //Search and Current Weather with API
-
 let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
 
 let searchCity = document.querySelector("#city-search");
 searchCity.addEventListener("click", cityUpdate);
 
+//City in search and update text
 function cityUpdate(event) {
   let cityInput = document.querySelector("#city-input");
   let cityName = cityInput.value;
@@ -41,8 +41,9 @@ function cityUpdate(event) {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
 }
 
+//Temperature
 function showTemperature(response) {
-  console.log(response);
+  console.log(response.data);
 
   let city = document.querySelector("#city");
   city.innerHTML = response.data.name;
@@ -50,8 +51,17 @@ function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let cityTemp = document.querySelector("#temperature");
   cityTemp.innerHTML = temperature;
+
+  celsiusTemp = response.data.main.temp;
+
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = response.data.main.humidity;
+
+  let windspeed = document.querySelector("#wind");
+  windspeed.innerHTML = response.data.wind.speed;
 }
-//currentCity works on Visual Studio Code, but not on codesandbox for some reason...
+
+//Current city
 let currentCity = document.querySelector("#current-city");
 currentCity.addEventListener("click", () => {
   navigator.geolocation.getCurrentPosition((position) => {
@@ -66,3 +76,26 @@ currentCity.addEventListener("click", () => {
     });
   });
 });
+
+//Temperature unit conversion C to F
+let celsiusTemp = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+}
+
+//Temperature unit conversion F to C
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+}

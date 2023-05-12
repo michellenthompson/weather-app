@@ -21,23 +21,10 @@ form {
 
 .todaytemp {
   font-size: 55px;
-  padding-top: 50px;
-}
-
-.weekstemp {
-  margin-top: 15px;
-}
-
-.weather {
-  font-size: 30px;
-}
-img#weather-image {
-  width: 50px;
-  filter: drop-shadow(2px 0px 0.1rem grey);
 }
 
 .units {
-  font-size: 12px;
+  font-size: 16px;
   vertical-align: text-top;
 }
 
