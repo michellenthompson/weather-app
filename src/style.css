@@ -23,6 +23,15 @@ form {
   font-size: 55px;
 }
 
+.todaytemp .active {
+  color: black;
+  cursor: default;
+}
+
+.todaytemp .active:hover {
+  text-decoration: none;
+}
+
 .units {
   font-size: 16px;
   vertical-align: text-top;
