@@ -59,6 +59,12 @@ function showTemperature(response) {
 
   let windspeed = document.querySelector("#wind");
   windspeed.innerHTML = response.data.wind.speed;
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 //Current city
