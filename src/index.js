@@ -54,6 +54,9 @@ function showTemperature(response) {
 
   celsiusTemp = response.data.main.temp;
 
+  let weatherdesc = document.querySelector("#weather-description");
+  weatherdesc.innerHTML = response.data.weather[0].main;
+
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = response.data.main.humidity;
 
