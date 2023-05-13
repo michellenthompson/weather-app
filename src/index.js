@@ -28,8 +28,14 @@ formatDate();
 //Search and Current Weather with API
 let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
 
-let searchCity = document.querySelector("#city-search");
-searchCity.addEventListener("click", cityUpdate);
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchCity = document.querySelector("#city-search");
+  searchCity.addEventListener("click", cityUpdate);
+}
 
 //City in search and update text
 function cityUpdate(event) {
