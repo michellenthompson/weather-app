@@ -81,21 +81,20 @@ function formatDay(timestamp) {
 //Search and current weather with API
 let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
 
+function handleSubmit(event) {
+  event.preventDefault();
+  let searchCity = document.querySelector("#city-input").value;
+
+  cityUpdate(searchCity);
+}
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-function handleSubmit(event) {
-  event.preventDefault();
-  let searchCity = document.querySelector("#city-search");
-  searchCity.addEventListener("click", cityUpdate);
-}
-
 //City in search and update text
-function cityUpdate(event) {
-  let cityInput = document.querySelector("#city-input");
-  let cityName = cityInput.value;
-
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric`;
+function cityUpdate(city) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
 
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
 }
@@ -130,6 +129,13 @@ function showTemperature(response) {
 
   getForecast(response.data.coord);
 }
+
+let citySearch = document.querySelector("#city-search");
+citySearch.addEventListener("click", () => {
+  var cityName = document.querySelector("#city-input").value;
+
+  cityUpdate(cityName);
+});
 
 //Current city
 let currentCity = document.querySelector("#current-city");
@@ -174,3 +180,9 @@ function displayCelsiusTemperature(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemp);
 }
+
+cityUpdate("Munich");
+
+// window.addEventListener("load", () => {
+//   cityUpdate(document.querySelector("#city").innerText);
+// });
