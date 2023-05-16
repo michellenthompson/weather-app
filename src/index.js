@@ -25,7 +25,32 @@ function formatDate() {
 
 formatDate();
 
-//Search and Current Weather with API
+//Forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  forecastHTML =
+    forecastHTML +
+    `<div class="col-2">
+            <div class="weather-forecast-date">Mon</div>
+            <img
+              src="src/weather Icons/Weather_Sun with clouds_Weather_Sun.svg"
+              id="weather-icon"
+              width="42px"
+            />
+            <div class="weather-forecast-temperature">
+              <span class="weather-forecast-temperature-max">18°</span>
+              <span class="weather-forecast-temperature-min">12°</span>
+            </div>
+          </div>`;
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
+
+//Search and current weather with API
 let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
 
 let form = document.querySelector("#search-form");
