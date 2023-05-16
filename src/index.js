@@ -19,7 +19,7 @@ function formatDate() {
   if (minute < 10) {
     minute = `0${minute}`;
   }
-  let h4 = document.querySelector("h4");
+  let h4 = document.querySelector("#time");
   h4.innerHTML = `${weekDay} ${hour}:${minute}`;
 }
 
