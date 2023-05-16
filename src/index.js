@@ -98,6 +98,7 @@ function cityUpdate(city) {
 
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
 }
+cityUpdate("Munich");
 
 //Temperature
 function showTemperature(response) {
@@ -180,8 +181,6 @@ function displayCelsiusTemperature(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemp);
 }
-
-cityUpdate("Munich");
 
 // window.addEventListener("load", () => {
 //   cityUpdate(document.querySelector("#city").innerText);
